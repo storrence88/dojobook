@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -6,30 +8,30 @@ ruby '2.6.3'
 gem 'rails', '~> 6.0.0'
 
 # API/Server
-gem 'puma', '~> 3.11'
 gem 'jbuilder', '~> 2.7'
+gem 'puma', '~> 3.11'
 
 # Assets
 gem 'sass-rails', '~> 5'
-gem 'webpacker', '~> 4.0'
-gem 'turbolinks', '~> 5'
 gem 'simple_form'
+gem 'turbolinks', '~> 5'
+gem 'webpacker', '~> 4.0'
 
 # Authentication
 gem 'devise'
 
 # Background Processing
-gem 'sidekiq'
 gem 'redis'
+gem 'sidekiq'
 
 # CI Testing
+gem 'brakeman', require: false
 gem 'rubocop', require: false
 gem 'rubycritic', require: false
-gem 'brakeman', require: false
 
 # Database
-gem 'pg', '>= 0.18', '< 2.0'
 gem 'hookup'
+gem 'pg', '>= 0.18', '< 2.0'
 
 # Pagination
 gem 'kaminari'
@@ -39,7 +41,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Debugging
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-byebug'
   gem 'pry-rails'
 
@@ -62,24 +64,24 @@ group :development, :test do
   gem 'binding_of_caller'
 
   # Fake Data
-  gem 'faker'
   gem 'factory_bot_rails'
+  gem 'faker'
 
   # Tests
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'shoulda-callback-matchers'
-  gem 'fivemat'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'fivemat'
   gem 'formulaic'
+  gem 'rspec-rails'
+  gem 'shoulda-callback-matchers'
+  gem 'shoulda-matchers'
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
