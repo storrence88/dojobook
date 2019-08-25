@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 unless Rails.env.production? || Rails.env.staging?
   require 'rubocop/rake_task'
   require 'rubycritic/rake_task'
@@ -16,7 +18,7 @@ unless Rails.env.production? || Rails.env.staging?
 
       # Rubocop, fails if ruby syntax is wronchy
       RuboCop::RakeTask.new(:rubocop) do |t|
-        t.options = %w(-foffenses -fprogress -olog/rubocop.log)
+        t.options = %w[-foffenses -fprogress -olog/rubocop.log]
         t.fail_on_error = true
       end
 
@@ -67,25 +69,25 @@ unless Rails.env.production? || Rails.env.staging?
         coverage = values.reduce(:+) / values.count
 
         puts "Project covered in #{coverage}%!"
-        fail if coverage < 90
+        raise if coverage < 90
       end
 
       desc 'Run Brakeman'
-      task :brakeman, :output_files do |t, args|
+      task :brakeman, :output_files do |_t, args|
         require 'brakeman'
 
         files = args[:output_files].split(' ') if args[:output_files]
-        report = Brakeman.run app_path: ".", output_files: files, print_report: true
+        report = Brakeman.run app_path: '.', output_files: files, print_report: true
 
         if report.checks.warnings.any?
-          fail "Found #{report.checks.warnings.length} warnings, should be zero."
+          raise "Found #{report.checks.warnings.length} warnings, should be zero."
         end
 
-        if report.checks.warnings.length != 0 || report.checks.all_warnings.length != 0
+        if !report.checks.warnings.empty? || !report.checks.all_warnings.empty?
           puts "Found #{report.checks.all_warnings.length} view warnings, should be 0."
           puts "Found #{report.checks.warnings.length} security warnings, should be 0."
           puts "Found #{report.errors.length} parse errors (these can be ignored)."
-          fail "!!! Brakeman found warnings that need to be fixed !!!"
+          raise '!!! Brakeman found warnings that need to be fixed !!!'
         end
       end
 
