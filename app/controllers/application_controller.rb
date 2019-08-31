@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || profile_path
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
       :account_update, keys: %i[first_name last_name description]
