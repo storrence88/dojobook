@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :authenticate_user!
+
   def index; end
 
   def profile; end
@@ -17,4 +18,5 @@ class UsersController < ApplicationController
   def update; end
 
   def destroy; end
+
 end

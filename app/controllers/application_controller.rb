@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
-  def after_sign_in_path_for(resource)
-    stored_location_for(resource) || profile_path
+  def after_sign_in_path_for(_resource)
+    profile_path
   end
 
   def configure_permitted_parameters

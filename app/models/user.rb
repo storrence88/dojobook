@@ -29,4 +29,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :first_name, :last_name, :description, presence: true
+
+  def full_name
+    "#{first_name.capitalize} #{last_name.capitalize}"
+  end
 end

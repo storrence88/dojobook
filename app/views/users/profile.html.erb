@@ -1,4 +1,10 @@
 <div class="container">
-  <h1>Users#profile</h1>
-  <p>Find me in app/views/users/profile.html.erb</p>
+  <h1>Hi, <%= current_user.full_name %>!</h1>
+  <br>
+  <p>Here is your profile description:</p>
+  <div class="profile-description">
+    <%= current_user.description %>
+  </div>
+
+  
 </div>
