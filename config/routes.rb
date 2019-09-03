@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'users#index'
-  get 'professional_profile', to: 'users#profile', as: :profile
   devise_for :users, controllers: { registrations: 'registrations' }, path: '',
     path_names: { sign_in: 'login', sign_up: 'signup' }
+  
+  authenticated :user do
+    root 'dashboard#index', as: :authenticated_root
+  end
+  
+  root 'welcome#index'
   resources :users
 end
