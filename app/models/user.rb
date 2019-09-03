@@ -28,6 +28,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
+
   validates :first_name, :last_name, :description, presence: true
 
   def full_name
