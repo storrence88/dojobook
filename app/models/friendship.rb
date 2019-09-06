@@ -3,7 +3,7 @@
 # Table name: friendships
 #
 #  id         :bigint(8)        not null, primary key
-#  status     :integer          default(0)
+#  status     :integer          default("pending")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  friend_id  :bigint(8)
