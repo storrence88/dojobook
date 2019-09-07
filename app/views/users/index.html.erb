@@ -1,5 +1,16 @@
 <div class="container">
   <p>Users you want to connect with:</p>
   <div class="user-content">
+    <table class='table table-condensed'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'friendships/friend', collection: @users, as: :user %>
+      </tbody>
+    </table>
   </div>
 </div>
