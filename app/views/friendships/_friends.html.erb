@@ -1,6 +1,0 @@
-<%= content_tag :tr, id: dom_id(user) do %>
-  <td><%= user.full_name %></td>
-  <td>
-    <%= link_to 'Add Friend', [:new, :friendship, id: user], remote: true unless current_user.has_friendship?(user) %>
-  </td>
-<% end %>
