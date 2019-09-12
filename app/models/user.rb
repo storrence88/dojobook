@@ -57,6 +57,13 @@ class User < ApplicationRecord
     end
   end
 
+  def reject_request(friend)
+    transaction do
+      Friendship.find_by(user: self, friend: friend)&.destroy!
+      Friendship.find_by(user: friend, friend: self)&.destroy!
+    end
+  end
+
   def has_friendship?(friend)
     return true if self == friend
 

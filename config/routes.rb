@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   authenticated :user do
     root 'dashboard#index', as: :authenticated_root
+    resources :friendship, only: %i[new create destroy]
   end
   
   root 'welcome#index'
