@@ -9,7 +9,7 @@ gem 'rails', '~> 6.0.0'
 
 # API/Server
 gem 'jbuilder', '~> 2.7'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 
 # Assets
 gem 'sass-rails', '~> 5'
